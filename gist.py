@@ -231,6 +231,8 @@ def open_gist(gist_url):
         edit = view.begin_edit()
         view.insert(edit, 0, gist['files'][gist_filename]['content'])
         view.end_edit(edit)
+
+        view.settings().set("isGist", True)
         if not "language" in locals(): continue
         language = gist['files'][gist_filename]['language']        
         new_syntax = os.path.join(language,"{0}.tmLanguage".format(language))
