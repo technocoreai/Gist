@@ -1,4 +1,7 @@
 [
+	{ "keys": ["ctrl+s"], "command": "gist_update_file", "context":
+		[{ "key": "setting.gist_bound", "operator": "equal", "operand": true }]
+	},
 	{ "keys": ["ctrl+k", "ctrl+i"], "command": "gist" },
 	{ "keys": ["ctrl+k", "ctrl+p"], "command": "gist_private" },
 	{ "keys": ["ctrl+k", "ctrl+s"], "command": "gist_update_file" },

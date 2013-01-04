@@ -29,7 +29,7 @@ if settings.get('enterprise'):
 #Per page support (max 100)
 if settings.get('max_gists'):
     if settings.get('max_gists') <= 100:
-        GISTS_URL += '?per_page=%d' % settings.get('max_gists'); 
+        GISTS_URL += '?per_page=%d' % settings.get('max_gists');
     else:
         settings.set( "max_gists",100 )
         sublime.status_message("Gist: GitHub API does not support a value of higher than 100")
@@ -211,6 +211,7 @@ def gistify_view(view, gist, gist_filename):
     view.settings().set('gist_description', gist['description'])
     view.settings().set('gist_url', gist["url"])
     view.settings().set('gist_filename', gist_filename)
+    view.settings().set('gist_bound', True)
     view.set_status("Gist", statusline_string)
 
 def ungistify_view(view):
@@ -218,6 +219,7 @@ def ungistify_view(view):
     view.settings().erase('gist_description')
     view.settings().erase('gist_url')
     view.settings().erase('gist_filename')
+    view.settings().erase('gist_bound')
     view.erase_status("Gist")
 
 def open_gist(gist_url):
@@ -232,9 +234,8 @@ def open_gist(gist_url):
         view.insert(edit, 0, gist['files'][gist_filename]['content'])
         view.end_edit(edit)
 
-        view.settings().set("isGist", True)
         if not "language" in locals(): continue
-        language = gist['files'][gist_filename]['language']        
+        language = gist['files'][gist_filename]['language']
         new_syntax = os.path.join(language,"{0}.tmLanguage".format(language))
         new_syntax_path = os.path.join(sublime.packages_path(), new_syntax)
         if os.path.exists(new_syntax_path):

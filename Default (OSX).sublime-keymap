@@ -1,6 +1,6 @@
 [
 	{ "keys": ["super+s"], "command": "gist_update_file", "context":
-		[{ "key": "setting.isGist", "operator": "equal", "operand": true }]
+		[{ "key": "setting.gist_bound", "operator": "equal", "operand": true }]
 	},
 	{ "keys": ["super+k", "super+i"], "command": "gist" },
 	{ "keys": ["super+k", "super+p"], "command": "gist_private" },
